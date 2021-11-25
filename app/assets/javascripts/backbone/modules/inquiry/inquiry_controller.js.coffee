@@ -1,9 +1,9 @@
 @BG.module "Inquiry", (Inquiry, App) ->
   class Inquiry.InquiryRouter extends Marionette.AppRouter
-    appRoutes:
-      "buy(/:id)": "buy"
-      "inquire"  : "inquire"
-      "enquire"  : "inquire"
+    # appRoutes:
+    #   "buy(/:id)": "buy"
+    #   "inquire"  : "inquire"
+    #   "enquire"  : "inquire"
 
   class Inquiry.InquiryController extends Marionette.Controller
     initialize: ->
@@ -28,6 +28,6 @@
 
     back: ->
       Backbone.history.history.back()
-  
+
   Inquiry.addInitializer ->
     new Inquiry.InquiryRouter controller: new Inquiry.InquiryController()
