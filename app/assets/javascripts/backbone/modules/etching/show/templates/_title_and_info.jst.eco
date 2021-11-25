@@ -10,8 +10,9 @@
   <li>
     <strong>Print run:</strong> <%= @print_run %>
   </li>
-
+  <!--
   <li class="buy">
     <a href="/buy/<%= @id %>"><strong>BUY</strong></a>
   </li>
+  -->
 </ul>

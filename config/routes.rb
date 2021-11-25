@@ -60,6 +60,6 @@ Rails.application.routes.draw do
   scope controller: 'etchings', action: 'index' do
     get '/(:id)'
     get '/view/:id'
-    get '/buy(/:id)'
+    # get '/buy(/:id)'
   end
 end
