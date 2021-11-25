@@ -1,16 +1,17 @@
 <h2><%= @title %></h2>
 <ul>
+  <!--
   <li>
     <strong>Price:</strong> £<%= @price %> (unframed)
   </li>
+  -->
   <li>
     <strong>Size:</strong> <%= "#{@height} x #{@width} mm"%>
   </li>
-
+  <!--
   <li>
     <strong>Print run:</strong> <%= @print_run %>
   </li>
-  <!--
   <li class="buy">
     <a href="/buy/<%= @id %>"><strong>BUY</strong></a>
   </li>

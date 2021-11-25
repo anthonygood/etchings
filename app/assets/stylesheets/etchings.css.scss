@@ -28,7 +28,11 @@ $captionGutter: 5px;
 #show {
 
   .description {
-    p { margin-top: 25px; }
+    p {
+      margin-top: 25px;
+      line-height: 24px;
+      font-weight: 200;
+    }
   }
 
   img.medium {
