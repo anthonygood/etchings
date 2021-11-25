@@ -12,7 +12,7 @@ class Etching < ActiveRecord::Base
   scope :landscape, -> { where('width > height') }
   scope :portrait,  -> { where('height > width') }
   scope :listed,    -> { where(listed: true)     }
-  scope :unlisted,  -> { where(listed: false)    }  
+  scope :unlisted,  -> { where(listed: false)    }
 
   class << self
     def create_with_prints(attributes={})
@@ -48,8 +48,8 @@ class Etching < ActiveRecord::Base
   end
 
   def orientation
-    return nil unless width && height
-    if width > height
+    return nil unless @width && @height
+    if @width > @height
       "landscape"
     else
       "portrait"

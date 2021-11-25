@@ -20,12 +20,12 @@ module Etchings
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    ### Old stuff removed by rake rails:update
     # add custom validators path
-    config.autoload_paths += %W["#{config.root}/app/validators/"]
+    # config.autoload_paths += %W["#{config.root}/app/validators/"]
 
-    # use postmark to send mail
-    config.action_mailer.delivery_method = :postmark
-    config.action_mailer.postmark_settings = { :api_token => "2479ec60-579b-4eeb-9d05-40d42dcd98f5" }
+    # # use postmark to send mail
+    # config.action_mailer.delivery_method = :postmark
+    # config.action_mailer.postmark_settings = { :api_token => "2479ec60-579b-4eeb-9d05-40d42dcd98f5" }
   end
 end
-

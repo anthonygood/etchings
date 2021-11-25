@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150221231924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "etchings", force: true do |t|
+  create_table "etchings", force: :cascade do |t|
     t.string   "title"
     t.text     "short_description"
     t.integer  "height"
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 20150221231924) do
     t.integer  "price"
   end
 
-  create_table "etchings_themes", id: false, force: true do |t|
+  create_table "etchings_themes", id: false, force: :cascade do |t|
     t.integer "etching_id"
     t.integer "theme_id"
   end
 
   add_index "etchings_themes", ["etching_id", "theme_id"], name: "index_etchings_themes_on_etching_id_and_theme_id", using: :btree
 
-  create_table "inquiries", force: true do |t|
+  create_table "inquiries", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "phone"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150221231924) do
     t.datetime "updated_at"
   end
 
-  create_table "prints", force: true do |t|
+  create_table "prints", force: :cascade do |t|
     t.string   "thumbnail_url"
     t.string   "large_url"
     t.string   "tags"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150221231924) do
 
   add_index "prints", ["etching_id"], name: "index_prints_on_etching_id", using: :btree
 
-  create_table "themes", force: true do |t|
+  create_table "themes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

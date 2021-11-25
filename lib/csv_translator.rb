@@ -9,11 +9,11 @@ class CSVTranslator
     @column_titles = csv.shift
   end
 
-  def translations  
-    @translations ||= csv.collect do |row| 
-      row.each_with_index.inject(Translation.new invalid_keys) do |hash,(value,index)| 
+  def translations
+    @translations ||= csv.collect do |row|
+      row.each_with_index.inject(Translation.new invalid_keys) do |hash,(value,index)|
         hash[column_titles[index].to_sym] = value
-        hash  
+        hash
       end
     end
   end
