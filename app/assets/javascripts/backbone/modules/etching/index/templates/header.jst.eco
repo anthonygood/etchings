@@ -6,8 +6,8 @@
     </h1>
     <ul>
       <li><a class="about-good" href="/about">About Bill Good</a></li>
-      <li><a class="about-etching" href="/enquire">About Etching</a></li>
-      <li><a class="inquire" href="/enquire">Enquire</a></li>
+      <!-- <li><a class="about-etching" href="/enquire">About Etching</a></li> -->
+      <!-- <li><a class="inquire" href="/enquire">Enquire</a></li> -->
     </ul>
   </div>
 </div>
