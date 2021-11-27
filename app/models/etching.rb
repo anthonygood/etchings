@@ -48,8 +48,8 @@ class Etching < ActiveRecord::Base
   end
 
   def orientation
-    return nil unless @width && @height
-    if @width > @height
+    return nil unless width && height
+    if width > height
       "landscape"
     else
       "portrait"
