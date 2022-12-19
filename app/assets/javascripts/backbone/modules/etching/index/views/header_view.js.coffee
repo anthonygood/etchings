@@ -11,8 +11,8 @@
     SCHEMES = "neon turquoise pink green glitz".split(" ")
 
     onShow: ->
-      print = @randomPrint @model.get('prints')
-      @$el.css "background-image", @model.backgroundImageUrl(print.large_url)
+      print = @model.largePrintUrl @model.randomPrintIndex()
+      @$el.css "background-image", @model.backgroundImageUrl(print)
       @headerShine()
 
     goToEtching: (e) ->
@@ -23,11 +23,8 @@
       e.preventDefault()
       e.stopPropagation()
 
-    randomPrint: (prints) ->
-      prints[ _.random (prints.length - 1) ]
-
     headerShine: () ->
-      setTimeout => 
+      setTimeout =>
         @changeColour _(SCHEMES).sample()
       , 5000
 

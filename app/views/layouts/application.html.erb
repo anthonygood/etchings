@@ -17,7 +17,7 @@
 
 <%= javascript_tag do %>
   $(function(){
-    BG.start(); 
+    BG.start();
   });
 <% end %>
 
@@ -26,8 +26,8 @@
 
 <%= javascript_tag do %>
 
-  BG.Data.etchings.add(<%= @etchings.to_json(include: [:prints, :themes]).html_safe %>);
-  BG.Data.themes = new Backbone.Collection(<%= @themes.to_json(include: { etchings: {only: :id} }).html_safe %>);
+  BG.Data.etchings.add(<%= @etchings.to_json.html_safe %>);
+  BG.Data.themes = new Backbone.Collection(<%= @themes %>);
 
 <% end %>
 </html>

@@ -3,15 +3,23 @@
   class Etching.EtchingModel extends Backbone.Model
     url: "/show/:id"
 
+    sanitized: () ->
+      decodeURIComponent(@get('title'))
+        .toLowerCase()
+        .replace(/\s/g, '_')
+
     printUrl: (index=0) ->
-      @get('prints')[index].medium_url
+      '/med/' + @sanitized() + '_med.jpg'
 
     largePrintUrl: (index=0) ->
-      @get('prints')[index].large_url
+      i = if index then '_' + (index + 1) else ''
+      '/large/' + @sanitized() + i + '.jpg'
 
     backgroundImageUrl: (url) ->
       ['url("', url, '")'].join('')
 
     randomPrint: ->
-      prints = @get('prints')
-      prints[ _.random (prints.length - 1) ]
+      _.sample(@get('prints'))
+
+    randomPrintIndex: ->
+      _.random(0, @get('prints').length - 1)
