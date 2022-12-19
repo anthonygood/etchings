@@ -115,7 +115,7 @@ RSpec.describe Etching, :type => :model do
     end
 
     it "raises an exception if you don't specify prints" do
-      expect{ Etching.create_with_prints}.to raise_error(ArgumentError)
+      expect{ Etching.create_with_prints }.to raise_error(ArgumentError)
     end
 
     context "<< integration >>" do
