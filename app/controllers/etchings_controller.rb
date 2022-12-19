@@ -40,18 +40,19 @@ class EtchingsController < ApplicationController
   ]
 
   def index
-    @etchings = exhibition_order
-    @themes   = Theme.includes(:etchings).all
+    @etchings = Etching.all
+    @themes   = []
   end
 
   def show
-    @etching = Etching.includes(:prints, themes: [etchings: :prints]).find params[:id]
-    @themes  = @etching.themes
+    # @etching = Etching.includes(:prints, themes: [etchings: :prints]).find params[:id]
+    @etching = Etching.all[:id]
+    # @themes  = @etching.themes
 
     @next    = Etching.next @etching
     @prev    = Etching.previous @etching
-    
-    redirect_to :etchings unless @etching.listed
+
+    redirect_to :etchings if @etching['unlisted']
   end
 
   def exhibit
@@ -59,12 +60,12 @@ class EtchingsController < ApplicationController
   end
 
   private
-  def exhibition_order
-    all_etchings    = Etching.listed.includes(:prints, themes: [etchings: :prints]).all
-    best_etchings   = all_etchings.index_by(&:id)
-                                  .slice(*EXHIBIT_ORDER_BY_ID)
-                                  .values
-    rejects = all_etchings - best_etchings
-    best_etchings + rejects
-  end
+  # def exhibition_order
+  #   all_etchings    = Etching.listed.includes(:prints, themes: [etchings: :prints]).all
+  #   best_etchings = all_etchings.index_by(&:id)
+  #                                 .slice(*EXHIBIT_ORDER_BY_ID)
+  #                                 .values
+  #   rejects = all_etchings - best_etchings
+  #   best_etchings + rejects
+  # end
 end

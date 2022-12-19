@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   #   end
 
   get '/swatch' => 'etchings#swatch'
-  post '/inquiry' => 'inquiries#create'
+  # post '/inquiry' => 'inquiries#create'
 
   scope controller: 'etchings', action: 'index' do
     get '/(:id)'
