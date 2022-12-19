@@ -1,50 +1,52 @@
-class Etching < ActiveRecord::Base
+require 'json'
 
-  validates :title, presence: true, string: true
-  validates_with StringValidator, attributes: [:long_description, :short_description, :notes], allow_blank: true
-  validates_numericality_of :height, :width, :plates, :print_run, { only_integer: true, allow_blank: true }
-  validates :year, { year: true, allow_blank: true }
-
-  has_many :prints, dependent: :destroy
-  has_many :inquiries
-  has_and_belongs_to_many :themes
-
-  scope :landscape, -> { where('width > height') }
-  scope :portrait,  -> { where('height > width') }
-  scope :listed,    -> { where(listed: true)     }
-  scope :unlisted,  -> { where(listed: false)    }
-
+class Etching #< ActiveRecord::Base
+  @@json = JSON.parse File.read('./db/etchings.json')
   class << self
-    def create_with_prints(attributes={})
-      raise ArgumentError, "You must specify which prints to create" unless attributes[:versions]
-      etching = create! attributes.except(:versions)
-
-      attributes[:versions].each do |version|
-        Print.create_with_image(etching, "jpg", version)
-      end
-
-      etching
+    def all
+      @@json
     end
 
-    def create_with_prints_and_themes(attributes={})
-      raise ArgumentError, "You must specify which themes to create" unless attributes[:themes]
-      etching = create_with_prints attributes.except(:themes)
-
-      attributes[:themes].each do |theme|
-        etching.themes << Theme.where(name: theme).first_or_create
-        etching.save
-      end
-
-      etching
+    def index(etching)
+      @@json.find_index { |obj| obj['title'] == etching['title'] }
     end
 
     def previous(etching)
-      where(["id < ?", etching.id]).last
+      etchings[index(etching) - 1]
     end
 
     def next(etching)
-      where(["id > ?", etching.id]).first
+      etchings[index(etching) + 1]
     end
+  end
+
+  def initialize(obj)
+    @obj = obj
+  end
+
+  # delegate?
+  def prints
+    @obj['prints']
+  end
+
+  def height
+    @obj['height']
+  end
+
+  def width
+    @obj['width']
+  end
+
+  def title
+    @obj['title']
+  end
+
+  def themes
+    @obj['themes']
+  end
+
+  def listed
+    !@obj['unlisted']
   end
 
   def orientation
