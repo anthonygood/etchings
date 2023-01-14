@@ -6,7 +6,10 @@
       "click a": "goToShow"
     templateHelpers: ->
       colour: @getColour()
-      notes: @model.get('prints')[0].notes
+      notes: "Foo notes"
+      # TODO: reinstate me
+      # notes: @model.get('prints')[0].notes
+
 
     onShow: ->
       src = @model.backgroundImageUrl @model.printUrl()
@@ -23,7 +26,8 @@
       'url("'+@printUrl()+'")'
 
     getColour: ->
-      notes = @model.get('prints')[0].notes
+      # reinstate me?
+      notes = @model.get('prints')[0]
       if colour = notes.match(/(red)|(blue)|(green)|(red)|(yellow)|(neon)|(turquoise)|(gold)/i)
         colour[0].toLowerCase()
       else

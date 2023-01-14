@@ -9,7 +9,8 @@
         .replace(/\s/g, '_')
 
     printUrl: (index=0) ->
-      '/med/' + @sanitized() + '_med.jpg'
+      i = if index then '_' + (index + 1) else ''
+      '/med/' + @sanitized() + i + '_med.jpg'
 
     largePrintUrl: (index=0) ->
       i = if index then '_' + (index + 1) else ''
@@ -23,3 +24,6 @@
 
     randomPrintIndex: ->
       _.random(0, @get('prints').length - 1)
+
+    orientation: ->
+      if @get('height') > @get('width') then 'portrait' else 'landscape'

@@ -6,6 +6,8 @@
     className: "thumbnail-link"
     events:
       "click": "select"
+    templateHelpers: () =>
+      medium_url: @model.get('medium_url')
 
     select: ->
       @model.collection.trigger "thumbnail:select", @model

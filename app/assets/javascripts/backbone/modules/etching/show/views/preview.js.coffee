@@ -6,8 +6,12 @@
     childViewContainer: ".thumbnails"
     collectionEvents:
       "thumbnail:select": "embiggenThumbnail"
+    templateHelpers: () =>
+      orientation: @model.orientation()
+      large_url: @model.largePrintUrl(@index)
 
     onShow: ->
+      @index = 0
       @lock = new Show.Lock(@$('.medium'), @options.orientation)
       @$(".thumbnails").hide() unless @collection.length > 1
 
@@ -22,6 +26,6 @@
           $(@).on 'load', -> view.$el.addClass "loaded"
 
     embiggenThumbnail: (model) ->
-      @model = model
+      @index = model.get('index')
       @$el.removeClass('loaded')
       @render()

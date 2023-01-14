@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Etching, :type => :model do
-  let (:subject) { Etching.new( title: 'Nude Descending Stairs', 
-                                year: 1981, 
-                                width: 550, 
-                                height: 300, 
+  let (:subject) { Etching.new( title: 'Nude Descending Stairs',
+                                year: 1981,
+                                width: 550,
+                                height: 300,
                                 plates: 2,
                                 print_run: 100 ) }
 
@@ -100,9 +100,9 @@ RSpec.describe Etching, :type => :model do
 
   describe "create_with_prints" do
     let(:create_with_prints) { Etching.create_with_prints(
-        title: "A Gallant Wind", 
-        versions: ["bizarre", "excellent"] 
-        )}
+      title: "A Gallant Wind",
+      versions: ["bizarre", "excellent"]
+    ) }
 
     before do
       allow(Print).to receive(:create_with_image)
@@ -115,7 +115,7 @@ RSpec.describe Etching, :type => :model do
     end
 
     it "raises an exception if you don't specify prints" do
-      expect{ Etching.create_with_prints }.to raise_error(ArgumentError)
+      expect { Etching.create_with_prints }.to raise_error(ArgumentError)
     end
 
     context "<< integration >>" do
@@ -138,7 +138,7 @@ RSpec.describe Etching, :type => :model do
 
   describe "create_with_prints_and_themes" do
     context "<< integration >> " do
-      let(:etching_with_prints_and_themes) { 
+      let(:etching_with_prints_and_themes) {
         Etching.create_with_prints_and_themes(
           title: "A Gallant Wind",
           versions: ["black"],

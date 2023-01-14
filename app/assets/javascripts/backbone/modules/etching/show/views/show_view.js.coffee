@@ -9,10 +9,16 @@
     onShow: ->
       $(document).scrollTop(0)
 
-      prints = new Backbone.Collection @model.get('prints')
+      prints = new Backbone.Collection @model.get('prints').map((title, i) =>
+        title: title
+        medium_url: @model.printUrl(i)
+        index: i
+      )
+
       @navigation.show new Show.NavigationView(model: @model)
-      @preview.show    new Show.Preview
-                                  model: prints.first()
+      @preview.show new Show.Preview
+                                  model: @model
+                                  large_url: @model.largePrintUrl()
                                   collection: prints
                                   childView: Show.ThumbnailView
-                                  orientation: @model.get('orientation')
+                                  orientation: @model.orientation()
